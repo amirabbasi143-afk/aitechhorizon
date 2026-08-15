@@ -21,11 +21,46 @@
     </nav>
 
     <!-- Hero Section -->
-    <header>
-        <span class="hero-badge">Welcome to the Future 🚀</span>
-        <h1>Master the <span class="gradient-text">AI Revolution</span></h1>
-        <p>Discover the best AI tools, learn how to use them, and stay ahead in the rapidly evolving tech landscape. Your ultimate guide to earning with AI.</p>
-    </header>
+    <!-- Hero Slider Section -->
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80" alt="AI Tech">
+                <div class="slide-content">
+                    <h1 class="gradient-text">Welcome to AI Tech Horizon</h1>
+                    <p>Your ultimate guide to the latest in Artificial Intelligence, Tech News, and Earning Strategies.</p>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" alt="Future Tech">
+                <div class="slide-content">
+                    <h1 class="gradient-text">Stay Ahead of the Curve</h1>
+                    <p>Get the latest updates on emerging AI tools and technologies shaping our future.</p>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1600&q=80" alt="Earning Money">
+                <div class="slide-content">
+                    <h1 class="gradient-text">Learn to Earn with AI</h1>
+                    <p>Discover actionable strategies to monetize your skills using the power of artificial intelligence.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slider Navigation Controls -->
+        <button class="slider-btn prev-btn">&#10094;</button>
+        <button class="slider-btn next-btn">&#10095;</button>
+        
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="container">

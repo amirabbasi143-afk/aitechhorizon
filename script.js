@@ -27,3 +27,72 @@ document.querySelectorAll('.card').forEach(card => {
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(card);
 });
+
+// Slider Logic
+let slideIndex = 1;
+let slideInterval;
+
+function initSlider() {
+    let slides = document.getElementsByClassName("slide");
+    if (!slides.length) return; // Only run if slider exists on page
+
+    showSlides(slideIndex);
+    startSlideTimer();
+
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            plusSlides(-1);
+            resetSlideTimer();
+        });
+        nextBtn.addEventListener('click', () => {
+            plusSlides(1);
+            resetSlideTimer();
+        });
+    }
+}
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+    resetSlideTimer();
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    
+    for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");  
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+    }
+    
+    slides[slideIndex-1].classList.add("active");  
+    dots[slideIndex-1].classList.add("active");
+}
+
+function startSlideTimer() {
+    slideInterval = setInterval(function() {
+        plusSlides(1);
+    }, 5000); // Change image every 5 seconds
+}
+
+function resetSlideTimer() {
+    clearInterval(slideInterval);
+    startSlideTimer();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSlider();
+});
