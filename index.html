@@ -1,665 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Tech Horizon | Future of AI, Tech Guides & Digital Skills</title>
-  <meta name="description" content="Discover comprehensive guides, AI video tools, freelance tech skills, and actionable tutorials on AI Tech Horizon.">
-  <meta name="keywords" content="AI tools, tech tutorials, remote work skills, AI video generation, prompt engineering">
-  <meta name="robots" content="index, follow">
-  <style>
-    :root {
-      --primary: #1e3a8a;
-      --primary-light: #3b82f6;
-      --secondary: #0f172a;
-      --accent: #0284c7;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #334155;
-      --text-heading: #0f172a;
-      --border: #e2e8f0;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text-main);
-      line-height: 1.7;
-    }
-
-    header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-      color: white;
-      padding: 2.5rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.5px;
-    }
-
-    header p {
-      color: #94a3b8;
-      font-size: 1.05rem;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    nav {
-      background-color: white;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
-
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0.75rem 1rem;
-    }
-
-    .nav-btn {
-      background: none;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .nav-btn:hover, .nav-btn.active {
-      background-color: #eff6ff;
-      color: var(--primary-light);
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .section-view {
-      display: none;
-    }
-
-    .section-view.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .post-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .post-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-    }
-
-    .tag {
-      display: inline-block;
-      align-self: flex-start;
-      background: #e0f2fe;
-      color: #0369a1;
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    .post-card h3 {
-      font-size: 1.25rem;
-      color: var(--text-heading);
-      margin-bottom: 0.75rem;
-      line-height: 1.4;
-    }
-
-    .post-card p {
-      font-size: 0.95rem;
-      color: #64748b;
-      margin-bottom: 1.25rem;
-      flex-grow: 1;
-    }
-
-    .read-more-btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      font-weight: 500;
-      cursor: pointer;
-      text-align: center;
-      transition: background-color 0.2s ease;
-    }
-
-    .read-more-btn:hover {
-      background-color: var(--primary-light);
-    }
-
-    .article-full {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-top: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .article-full h1 {
-      font-size: 2rem;
-      color: var(--text-heading);
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    .article-full h2 {
-      font-size: 1.4rem;
-      color: var(--secondary);
-      margin: 1.8rem 0 0.8rem 0;
-      border-left: 4px solid var(--primary-light);
-      padding-left: 0.6rem;
-    }
-
-    .article-full h3 {
-      font-size: 1.15rem;
-      color: var(--text-heading);
-      margin: 1.2rem 0 0.5rem 0;
-    }
-
-    .article-full p {
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
-    }
-
-    .article-full ul, .article-full ol {
-      margin: 0.8rem 0 1.2rem 1.5rem;
-    }
-
-    .article-full li {
-      margin-bottom: 0.4rem;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-    }
-
-    table, th, td {
-      border: 1px solid var(--border);
-    }
-
-    th {
-      background-color: #f1f5f9;
-      color: var(--text-heading);
-      padding: 0.8rem;
-      text-align: left;
-      font-weight: 600;
-    }
-
-    td {
-      padding: 0.8rem;
-      color: var(--text-main);
-    }
-
-    .back-btn {
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      background-color: #e2e8f0;
-      color: var(--text-heading);
-      padding: 0.4rem 0.9rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      border: none;
-    }
-
-    .back-btn:hover {
-      background-color: #cbd5e1;
-    }
-
-    .ad-slot {
-      background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      padding: 1.2rem;
-      text-align: center;
-      color: #94a3b8;
-      font-size: 0.85rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-      letter-spacing: 0.5px;
-    }
-
-    footer {
-      background-color: var(--secondary);
-      color: #94a3b8;
-      padding: 2.5rem 1rem;
-      margin-top: 3rem;
-      text-align: center;
-      border-top: 1px solid #334155;
-    }
-
-    footer a {
-      color: #cbd5e1;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    footer a:hover {
-      color: white;
-    }
-
-    .footer-links {
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      header h1 { font-size: 1.7rem; }
-      .article-full { padding: 1.2rem; }
-      .article-full h1 { font-size: 1.5rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tech Horizon - Discover the Future of AI</title>
+    <meta name="description" content="Stay updated with the latest AI tools, technology trends, and guides on how to leverage Artificial Intelligence for earning.">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>AI Tech Horizon</h1>
-    <p>Your Premier Hub for AI Tools, Technical Guides & High-Income Digital Skills</p>
-  </header>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">AI Tech Horizon</a>
+                <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#">AI Tools</a>
+            <a href="#">Make Money</a>
+            <a href="about.html">About</a>
+            <a href="privacy-policy.html">Privacy</a>
+        </div>
+    </nav>
 
-  <nav>
-    <div class="nav-container">
-      <button class="nav-btn active" onclick="showSection('home')">Home</button>
-      <button class="nav-btn" onclick="showSection('about')">About Us</button>
-      <button class="nav-btn" onclick="showSection('privacy')">Privacy Policy</button>
-      <button class="nav-btn" onclick="showSection('disclaimer')">Disclaimer</button>
-      <button class="nav-btn" onclick="showSection('terms')">Terms & Conditions</button>
-    </div>
-  </nav>
-
-  <div class="container">
-    
-    <!-- HOME SECTION -->
-    <div id="section-home" class="section-view active">
-      <div class="ad-slot">[ Google AdSense Banner Placement Area ]</div>
-      
-      <h2 style="font-size: 1.6rem; color: var(--text-heading);">Featured Articles & Guides</h2>
-      <p style="color: #64748b;">Explore our latest curated insights on automation, tools, and digital careers.</p>
-      
-      <div class="card-grid">
+    <!-- Hero Section -->
+    <!-- Hero Slider Section -->
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80" alt="AI Tech">
+                <div class="slide-content">
+                    <h1 class="gradient-text">Welcome to AI Tech Horizon</h1>
+                    <p>Your ultimate guide to the latest in Artificial Intelligence, Tech News, and Earning Strategies.</p>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" alt="Future Tech">
+                <div class="slide-content">
+                    <h1 class="gradient-text">Stay Ahead of the Curve</h1>
+                    <p>Get the latest updates on emerging AI tools and technologies shaping our future.</p>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1600&q=80" alt="Earning Money">
+                <div class="slide-content">
+                    <h1 class="gradient-text">Learn to Earn with AI</h1>
+                    <p>Discover actionable strategies to monetize your skills using the power of artificial intelligence.</p>
+                </div>
+            </div>
+        </div>
         
-        <!-- Card 1 -->
-        <div class="post-card">
-          <div>
-            <span class="tag">Productivity & AI</span>
-            <h3>Top 7 Best AI Productivity Tools to Automate Your Workflow in 2026</h3>
-            <p>Discover how modern AI writing assistants, automated coding copilots, and intelligent workflow managers can triple your daily output.</p>
-          </div>
-          <button class="read-more-btn" onclick="showArticle('art1')">Read Article →</button>
+        <!-- Slider Navigation Controls -->
+        <button class="slider-btn prev-btn">&#10094;</button>
+        <button class="slider-btn next-btn">&#10095;</button>
+        
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- AdSense Placeholder -->
+        <div class="ad-space">
+            [Google AdSense Banner Advertisement - 728x90]
         </div>
 
-        <!-- Card 2 -->
-        <div class="post-card">
-          <div>
-            <span class="tag">Video & Creators</span>
-            <h3>How AI Video Generators Are Changing Short-Form Content Creation</h3>
-            <p>A step-by-step masterclass on leveraging 10-second cinematic AI video tools to build high-reach YouTube Shorts and Reels.</p>
-          </div>
-          <button class="read-more-btn" onclick="showArticle('art2')">Read Article →</button>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="post-card">
-          <div>
-            <span class="tag">Remote Careers</span>
-            <h3>Top 5 High-Income Tech and AI Skills for Remote Freelancing</h3>
-            <p>Explore the most in-demand freelance domains in 2026, including prompt engineering, workflow automation, and predictive data analysis.</p>
-          </div>
-          <button class="read-more-btn" onclick="showArticle('art3')">Read Article →</button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ARTICLE 1 FULL -->
-    <div id="article-art1" class="section-view">
-      <button class="back-btn" onclick="showSection('home')">← Back to All Articles</button>
-      <div class="article-full">
-        <h1>Top 7 Best AI Productivity Tools to Automate Your Workflow in 2026</h1>
-        <p><em>Published by AI Tech Horizon Editorial Team • 6 min read</em></p>
+        <h2 class="section-title">Latest Articles</h2>
         
-        <div class="ad-slot">[ In-Article Responsive Ad Unit ]</div>
+        <div class="blog-grid">
+            <!-- Article 1 -->
+            <a href="top-10-ai-tools-2026.html" class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" alt="AI Robot">
+                </div>
+                <div class="card-content">
+                    <span class="category">AI Tools</span>
+                    <h3 class="card-title">Top 10 AI Tools You Must Use in 2026</h3>
+                    <p class="card-excerpt">Discover the most powerful artificial intelligence tools that are changing the way we work and earn money today.</p>
+                    <div class="card-footer">
+                        <span>Aug 15, 2026</span>
+                        <span class="read-more">Read More &rarr;</span>
+                    </div>
+                </div>
+            </a>
 
-        <p>In today's fast-evolving digital era, leveraging Artificial Intelligence (AI) is no longer an option—it is a critical necessity for students, freelancers, and professionals. Whether you are managing research, writing digital content, coding, or organizing project workflows, integrating cutting-edge AI tools can save you countless hours each week.</p>
-
-        <h2>1. Next-Generation AI Research and Writing Assistants</h2>
-        <p>Modern Large Language Models (LLMs) and specialized research engines provide rapid synthesis of vast information. Tools that assist in drafting outlines, proofreading complex reports, and summarizing technical whitepapers empower creators to focus on high-level strategic tasks rather than repetitive drafting.</p>
-
-        <h2>2. Automated Video & Cinematic Media Generators</h2>
-        <p>Creating multimedia content has been revolutionized by AI video generation platforms. Creators can now transform simple text prompts into short-form cinematic visuals, making content creation faster and more accessible for YouTube, digital marketing, and educational presentations.</p>
-
-        <h2>3. Intelligent Task and Project Management Tools</h2>
-        <p>AI-driven project management software can predict deadlines, allocate workload automatically, and optimize schedule priorities. By analyzing past project performance, these tools prevent burnout and ensure timely milestones.</p>
-
-        <h2>4. Automated Coding and Debugging Copilots</h2>
-        <p>Software development has accelerated significantly with AI code assistance. From auto-completing complex syntax to identifying security vulnerabilities in real-time, AI coding companions increase programmer output while reducing error margins.</p>
-
-        <h2>Comparison of Top AI Productivity Categories</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Primary Use Case</th>
-              <th>Key Advantage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Text & Research Assistants</td>
-              <td>Report writing, summarization, brainstorming</td>
-              <td>Saves up to 60% of drafting time</td>
-            </tr>
-            <tr>
-              <td>Visual & Video Creation</td>
-              <td>Short-form video, presentations, design</td>
-              <td>Zero prior video editing skill required</td>
-            </tr>
-            <tr>
-              <td>Code Automation</td>
-              <td>Web development, bug fixing, script writing</td>
-              <td>Accelerates deployment cycles</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>How to Choose the Right AI Tool for Your Needs</h2>
-        <ul>
-          <li><strong>Identify Bottlenecks:</strong> Pinpoint which tasks consume the majority of your daily hours.</li>
-          <li><strong>Check Integration Capabilities:</strong> Ensure the tool works smoothly with your existing browser, document processors, or cloud systems.</li>
-          <li><strong>Evaluate Cost vs. Value:</strong> Start with free or freemium tiers before committing to enterprise subscriptions.</li>
-        </ul>
-
-        <h2>Frequently Asked Questions (FAQs)</h2>
-        <h3>Can AI replace human creativity in workflows?</h3>
-        <p>No. AI is designed to automate repetitive tasks and optimize speed, but human strategic thinking, contextual judgment, and emotional depth remain irreplaceable.</p>
-
-        <h3>Are free AI tools sufficient for professional work?</h3>
-        <p>Yes, many platforms offer robust free tiers that cover standard writing, basic video generation, and project management needs effectively.</p>
-
-        <h2>Final Verdict</h2>
-        <p>Adopting the right suite of AI productivity tools allows you to work smarter, achieve higher accuracy, and stay competitive in the digital age. Start small by automating one core workflow today to experience the tangible productivity leap.</p>
-      </div>
-    </div>
-
-    <!-- ARTICLE 2 FULL -->
-    <div id="article-art2" class="section-view">
-      <button class="back-btn" onclick="showSection('home')">← Back to All Articles</button>
-      <div class="article-full">
-        <h1>How AI Video Generators Are Changing Short-Form Content Creation: A Complete Guide</h1>
-        <p><em>Published by AI Tech Horizon Editorial Team • 5 min read</em></p>
-        
-        <div class="ad-slot">[ In-Article Responsive Ad Unit ]</div>
-
-        <p>Short-form video content on platforms like YouTube Shorts, TikTok, and Instagram Reels has become the fastest-growing medium for digital engagement. With the rapid evolution of generative Artificial Intelligence, creating high-quality cinematic clips no longer requires expensive cameras, editing suites, or production teams.</p>
-
-        <h2>The Rise of Text-to-Video AI Technology</h2>
-        <p>Modern AI video generators allow creators to input descriptive text prompts and receive high-definition, 10-second cinematic sequences within minutes. These tools interpret lighting, camera angles, textures, and physics to produce hyper-realistic scenes that look like professional film footage.</p>
-
-        <h2>Key Benefits for Digital Creators</h2>
-        <ul>
-          <li><strong>Rapid Prototyping:</strong> Test new creative ideas, scenes, and visual storytelling angles in seconds.</li>
-          <li><strong>Cost Efficiency:</strong> Eliminate expensive production sets, visual effects software, and camera gear costs.</li>
-          <li><strong>Consistency:</strong> Maintain daily upload schedules across social channels without content fatigue.</li>
-        </ul>
-
-        <h2>Top Use Cases for AI-Generated Video Clips</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Platform / Format</th>
-              <th>Optimal Video Style</th>
-              <th>Recommended Length</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>YouTube Shorts</td>
-              <td>Cinematic Storytelling / Tech Reviews</td>
-              <td>15 to 45 Seconds</td>
-            </tr>
-            <tr>
-              <td>Instagram Reels</td>
-              <td>Aesthetic Visuals / Fast Paced Clips</td>
-              <td>10 to 30 Seconds</td>
-            </tr>
-            <tr>
-              <td>Educational Promos</td>
-              <td>Explainers & AI Workflow Demos</td>
-              <td>30 to 60 Seconds</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>Best Practices to Optimize AI Video for Algorithmic Reach</h2>
-        <ol>
-          <li><strong>Craft Engaging Hooks:</strong> Ensure the first 3 seconds contain dynamic movement or a compelling visual question.</li>
-          <li><strong>Add Accurate Subtitles:</strong> Over 60% of social media users watch mobile videos with audio turned off.</li>
-          <li><strong>Optimized Metadata:</strong> Pair your video with trending hashtags, concise descriptions, and high-CTR title hooks.</li>
-        </ol>
-
-        <h2>Frequently Asked Questions (FAQs)</h2>
-        <h3>Can AI video content be monetized on social media?</h3>
-        <p>Yes. Platforms monetize unique, transformative content that adds narrative or educational value, provided it adheres to copyright and community guidelines.</p>
-
-        <h2>Conclusion</h2>
-        <p>AI video technology is leveling the playing field for solo creators and digital entrepreneurs. By combining smart prompt engineering with consistent publishing, creators can build massive digital audiences with unprecedented efficiency.</p>
-      </div>
-    </div>
-
-    <!-- ARTICLE 3 FULL -->
-    <div id="article-art3" class="section-view">
-      <button class="back-btn" onclick="showSection('home')">← Back to All Articles</button>
-      <div class="article-full">
-        <h1>Top 5 High-Income Tech and AI Skills to Master for Remote Freelancing in 2026</h1>
-        <p><em>Published by AI Tech Horizon Editorial Team • 7 min read</em></p>
-        
-        <div class="ad-slot">[ In-Article Responsive Ad Unit ]</div>
-
-        <p>The global remote freelance economy is expanding rapidly, with companies seeking specialized talent to automate processes, build digital platforms, and analyze complex datasets. Learning high-demand technical and AI skills provides professionals and students with global earning opportunities.</p>
-
-        <h2>1. AI Workflow Automation & Integration</h2>
-        <p>Small and medium businesses are eager to integrate AI into their customer support, data entry, and marketing pipelines. Freelancers who understand how to connect APIs, create automated workflows, and implement AI chatbots command high hourly rates.</p>
-
-        <h2>2. Modern Full-Stack & Static Web Development</h2>
-        <p>Building fast, secure, and responsive web platforms remains a foundational skill. Deploying lightweight web architectures using modern static site generators and cloud hosting platforms ensures clients achieve superior load speeds and SEO rankings.</p>
-
-        <h2>3. Prompt Engineering & Generative AI Design</h2>
-        <p>Prompt engineering has transitioned into a core digital competency. Crafting precise, structured instructions for LLMs and image/video synthesis models allows organizations to generate reliable reports, marketing assets, and design mockups at scale.</p>
-
-        <h2>4. Data Analysis & Predictive Analytics</h2>
-        <p>Raw data is meaningless without interpretation. Businesses require analysts who can clean datasets, visualize trends using modern dashboards, and provide actionable business insights for decision-makers.</p>
-
-        <h2>Freelance Income Potential by Skillset</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Skill Domain</th>
-              <th>Demand Level</th>
-              <th>Average Freelance Earning Potential</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>AI Automation Specialist</td>
-              <td>Extremely High</td>
-              <td>$35 – $75 / hr</td>
-            </tr>
-            <tr>
-              <td>Full-Stack Web Developer</td>
-              <td>High</td>
-              <td>$30 – $60 / hr</td>
-            </tr>
-            <tr>
-              <td>Data & Insights Analyst</td>
-              <td>High</td>
-              <td>$25 – $50 / hr</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>Summary</h2>
-        <p>The tech landscape rewards continuous learning and practical execution. Mastering these AI and digital capabilities will position you at the forefront of the global remote workforce.</p>
-      </div>
-    </div>
-
-    <!-- ABOUT US SECTION -->
-    <div id="section-about" class="section-view">
-      <div class="article-full">
-        <h1>About AI Tech Horizon</h1>
-        <p>Welcome to <strong>AI Tech Horizon</strong>, your premier destination for authentic, up-to-date, and actionable knowledge regarding Artificial Intelligence tools, cutting-edge technology developments, and high-income digital careers.</p>
-        
-        <h2>Our Mission</h2>
-        <p>Our mission is to empower professionals, researchers, students, and digital creators worldwide by breaking down complex technological trends into practical, easy-to-implement tutorials and guides.</p>
-
-        <h2>What We Cover</h2>
-        <ul>
-          <li><strong>AI Productivity & Workflow Automation:</strong> In-depth analysis of AI writing, coding, and workflow systems.</li>
-          <li><strong>Media & Video Generation:</strong> Detailed guides on prompt crafting for next-generation cinematic video tools.</li>
-          <li><strong>Remote Career Roadmap:</strong> High-yield digital skills guidance for thriving in the modern freelance economy.</li>
-        </ul>
-
-        <h2>Commitment to Quality</h2>
-        <p>Every article on AI Tech Horizon is carefully researched, structured for maximum clarity, and updated regularly to reflect the latest algorithmic and technical breakthroughs.</p>
-      </div>
-    </div>
-
-    <!-- PRIVACY POLICY SECTION -->
-    <div id="section-privacy" class="section-view">
-      <div class="article-full">
-        <h1>Privacy Policy</h1>
-        <p><em>Last updated: August 2026</em></p>
-        <p>At AI Tech Horizon, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information collected and recorded by AI Tech Horizon and how we utilize it.</p>
-
-        <h2>Log Files</h2>
-        <p>AI Tech Horizon follows standard procedures for utilizing log files. These files log visitors when they access websites. The information collected includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamps, referring/exit pages, and click statistics.</p>
-
-        <h2>Cookies and Web Beacons</h2>
-        <p>Like any other website, AI Tech Horizon uses 'cookies' to store information including visitors' preferences and accessed pages. This information is used to optimize user experience by customizing web page content based on browser type and settings.</p>
-
-        <h2>Google DoubleClick DART Cookie</h2>
-        <p>Google is a third-party vendor on our site. It uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visits to this site and other websites across the internet.</p>
-
-        <h2>Third-Party Privacy Policies</h2>
-        <p>AI Tech Horizon's Privacy Policy does not apply to other advertisers or external websites. You are advised to consult the respective Privacy Policies of third-party ad servers for detailed information.</p>
-      </div>
-    </div>
-
-    <!-- DISCLAIMER SECTION -->
-    <div id="section-disclaimer" class="section-view">
-      <div class="article-full">
-        <h1>Disclaimer</h1>
-        <p>All information provided on AI Tech Horizon is published in good faith and for general educational and informational purposes only.</p>
-        <p>AI Tech Horizon makes no warranties regarding the complete accuracy, reliability, or suitability of this information. Any action you take based on the information found on this website is strictly at your own discretion and risk. AI Tech Horizon will not be held liable for any losses or damages incurred in connection with the use of our website.</p>
-        <p>From our website, you may visit external links. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these external sites.</p>
-      </div>
-    </div>
-
-    <!-- TERMS SECTION -->
-    <div id="section-terms" class="section-view">
-      <div class="article-full">
-        <h1>Terms and Conditions</h1>
-        <p>By accessing and utilizing AI Tech Horizon, you agree to comply with and be bound by the following terms and conditions of use.</p>
-        <h2>Intellectual Property Rights</h2>
-        <p>Unless otherwise stated, AI Tech Horizon and/or its licensors own the intellectual property rights for all material on AI Tech Horizon. All intellectual property rights are reserved.</p>
-        <h2>Hyperlinking to our Content</h2>
-        <p>Organizations and individuals may link to our home page or articles so long as the link is not deceptive, does not falsely imply sponsorship or endorsement, and fits within the context of the linking party's site.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <footer>
-    <div class="footer-links">
-      <a href="javascript:void(0)" onclick="showSection('home')">Home</a> |
-      <a href="javascript:void(0)" onclick="showSection('about')">About Us</a> |
-      <a href="javascript:void(0)" onclick="showSection('privacy')">Privacy Policy</a> |
-      <a href="javascript:void(0)" onclick="showSection('disclaimer')">Disclaimer</a> |
-      <a href="javascript:void(0)" onclick="showSection('terms')">Terms</a>
-    </div>
-    <p>&copy; 2026 AI Tech Horizon. All rights reserved.</p>
-  </footer>
-
-  <script>
-    function showSection(sectionId) {
-      document.querySelectorAll('.section-view').forEach(function(el) {
-        el.classList.remove('active');
-      });
-      document.querySelectorAll('.nav-btn').forEach(function(btn) {
-        btn.classList.remove('active');
-      });
-
-      var target = document.getElementById('section-' + sectionId);
-      if (target) {
-        target.classList.add('active');
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showArticle(artId) {
-      document.querySelectorAll('.section-view').forEach(function(el) {
-        el.classList.remove('active');
-      });
-      var target = document.getElementById('article-' + artId);
-      if (target) {
-        target.classList.add('active');
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  </script>
-</body>
-</html>
+            <!-- Article 2 -->
+            <a href="how-to-earn-with-chatgpt.html" class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&w=600&q=80" alt="Person working on laptop">
+                </div>
+                <div class="card-content">
+                    <span class="category">Make Money</span>
                     <h3 class="card-title">How to Make $1000/Month Using ChatGPT</h3>
                     <p class="card-excerpt">A complete beginner's guide to using AI for content creation, freelancing, and building passive income streams.</p>
                     <div class="card-footer">
@@ -716,6 +153,54 @@
                     </div>
                 </div>
             </a>
+
+            <!-- Article 6 -->
+            <a href="15-Aug-2026-ai-productivity-tools.html" class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Productivity Tools">
+                </div>
+                <div class="card-content">
+                    <span class="category">AI Tools</span>
+                    <h3 class="card-title">Top 7 Best AI Productivity Tools to Automate Your Workflow in 2026</h3>
+                    <p class="card-excerpt">Discover how modern AI writing assistants, automated coding copilots, and intelligent workflow managers can triple your daily output.</p>
+                    <div class="card-footer">
+                        <span>Aug 15, 2026</span>
+                        <span class="read-more">Read More &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 7 -->
+            <a href="15-Aug-2026-ai-video-generators.html" class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Video Generators">
+                </div>
+                <div class="card-content">
+                    <span class="category">AI Tools</span>
+                    <h3 class="card-title">How AI Video Generators Are Changing Content Creation</h3>
+                    <p class="card-excerpt">A step-by-step masterclass on leveraging 10-second cinematic AI video tools to build high-reach Shorts and Reels.</p>
+                    <div class="card-footer">
+                        <span>Aug 15, 2026</span>
+                        <span class="read-more">Read More &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Article 8 -->
+            <a href="15-Aug-2026-high-income-tech-skills.html" class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=600&q=80" alt="Remote Skills">
+                </div>
+                <div class="card-content">
+                    <span class="category">Make Money</span>
+                    <h3 class="card-title">Top 5 High-Income Tech and AI Skills for Remote Freelancing</h3>
+                    <p class="card-excerpt">Explore the most in-demand freelance domains in 2026, including prompt engineering and workflow automation.</p>
+                    <div class="card-footer">
+                        <span>Aug 15, 2026</span>
+                        <span class="read-more">Read More &rarr;</span>
+                    </div>
+                </div>
+            </a>
         </div>
 
         <!-- AdSense Placeholder -->
@@ -733,10 +218,12 @@
             </div>
             <div>
                 <h4 style="margin-bottom: 15px; color: #fff;">Quick Links</h4>
-                <div class="footer-links">
+                                <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
                     <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                    <a href="terms.html">Terms & Conditions</a>
                 </div>
             </div>
             <div>
@@ -754,4 +241,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
 
