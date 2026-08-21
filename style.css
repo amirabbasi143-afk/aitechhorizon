@@ -6,8 +6,8 @@
   --text-muted: #475569;
   --card-bg: rgba(255, 255, 255, 0.9);
   --glass-border: rgba(0, 0, 0, 0.1);
-  --primary: #2563eb;
-  --secondary: #7c3aed;
+  --primary: #004b87;
+  --secondary: #f26522;
   --accent: #059669;
 }
 
@@ -492,5 +492,6 @@ footer {
     .slide-content p { font-size: 1rem; }
     .slider-btn { padding: 10px 15px; font-size: 16px; }
 }
+
 
 
