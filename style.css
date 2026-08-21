@@ -2,8 +2,8 @@
 
 :root {
   --bg-color: #f8fafc;
-  --text-color: #0f172a;
-  --text-muted: #475569;
+  --text-color: #333333;
+  --text-muted: #555555;
   --card-bg: rgba(255, 255, 255, 0.9);
   --glass-border: rgba(0, 0, 0, 0.1);
   --primary: #004b87;
@@ -425,7 +425,7 @@ footer {
     margin-bottom: 15px;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
     background: none;
-    -webkit-text-fill-color: #0f172a;
+    -webkit-text-fill-color: #ffffff;
 }
 .slide-content p {
     font-size: 1.2rem;
@@ -487,6 +487,7 @@ footer {
     .slide-content p { font-size: 1rem; }
     .slider-btn { padding: 10px 15px; font-size: 16px; }
 }
+
 
 
 
