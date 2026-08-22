@@ -3,10 +3,10 @@ window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 50) {
         nav.style.padding = '15px 50px';
-        nav.style.background = 'rgba(15, 23, 42, 0.95)';
+        nav.style.background = 'rgba(255, 255, 255, 0.98)';
     } else {
         nav.style.padding = '20px 50px';
-        nav.style.background = 'rgba(15, 23, 42, 0.8)';
+        nav.style.background = 'rgba(255, 255, 255, 0.95)';
     }
 });
 
@@ -96,3 +96,4 @@ function resetSlideTimer() {
 document.addEventListener('DOMContentLoaded', () => {
     initSlider();
 });
+
