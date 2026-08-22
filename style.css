@@ -48,7 +48,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--glass-border);
   z-index: 1000;
@@ -490,6 +490,7 @@ footer {
     .slide-content p { font-size: 1rem; }
     .slider-btn { padding: 10px 15px; font-size: 16px; }
 }
+
 
 
 
