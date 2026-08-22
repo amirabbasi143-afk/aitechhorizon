@@ -58,7 +58,7 @@ nav {
 .logo {
   font-size: 1.8rem;
   font-weight: 900;
-  background: linear-gradient(to right, var(--primary), var(--secondary));
+  background: var(--primary); /* Deep Blue Logo */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -1px;
@@ -328,8 +328,10 @@ footer {
   margin-bottom: 40px;
 }
 
-.footer-logo { font-size: 1.5rem; font-weight: 900; color: #ffffff;
-  color: #0f172a;
+.footer-logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #f26522; /* IUB Orange */
   margin-bottom: 15px;
 }
 
@@ -439,8 +441,9 @@ footer {
     transform: translateY(-50%);
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(5px);
-    color: #0f172a;
-    border: 1px solid rgba(255,255,255,0.2);
+    color: #ffffff;
+
+    border: 2px solid #f26522; /* IUB Orange */
     font-size: 20px;
     padding: 15px 20px;
     cursor: pointer;
@@ -476,8 +479,8 @@ footer {
     background-color: rgba(255,255,255,0.8);
 }
 .dot.active {
-    background-color: var(--primary);
-    box-shadow: 0 0 10px var(--primary);
+    background-color: var(--secondary);
+    box-shadow: 0 0 10px var(--secondary);
     transform: scale(1.2);
 }
 
@@ -487,6 +490,8 @@ footer {
     .slide-content p { font-size: 1rem; }
     .slider-btn { padding: 10px 15px; font-size: 16px; }
 }
+
+
 
 
 
