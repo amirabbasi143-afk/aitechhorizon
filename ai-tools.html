@@ -1,294 +1,159 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools - AI Tech Horizon</title>
-    <meta name="description" content="Stay updated with the latest AI tools, technology trends, and guides on how to leverage Artificial Intelligence for earning.">
+    <meta name="description" content="AI Tech Horizon Tool Directory - Discover useful AI tools tested for real-world work, study and productivity.">
+    <title>AI Tools Directory - AI Tech Horizon</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTRVH89QV8"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-HTRVH89QV8');
-    </script>
-    <link rel="icon" type="image/svg+xml" href="icon.svg">
-    <link rel="apple-touch-icon" href="icon.svg">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#1a1a2e">
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HTRVH89QV8');</script>
 </head>
 <body>
-
-    <!-- Navbar -->
     <nav id="navbar">
         <a href="index.html" class="logo">AI Tech Horizon</a>
-                <div class="nav-links">
+        <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="ai-tools.html">AI Tools</a>
-            <a href="make-money.html">Make Money</a>
+            <a href="#">Guides</a>
+            <a href="#">Experiments</a>
+            <a href="make-money.html">AI for Work</a>
             <a href="about.html">About</a>
-            <a href="privacy-policy.html">Privacy</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <!-- Hero Slider Section -->
-    <div class="slider-container">
-        <div class="slider">
-            <!-- Slide 1 -->
-            <div class="slide active">
-                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80" alt="AI Tech">
-                <div class="slide-content">
-                    <h1 class="gradient-text">Welcome to AI Tech Horizon</h1>
-                    <p>Your ultimate guide to the latest in Artificial Intelligence, Tech News, and Earning Strategies.</p>
-                </div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80" alt="Future Tech">
-                <div class="slide-content">
-                    <h1 class="gradient-text">Stay Ahead of the Curve</h1>
-                    <p>Get the latest updates on emerging AI tools and technologies shaping our future.</p>
-                </div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1600&q=80" alt="Earning Money">
-                <div class="slide-content">
-                    <h1 class="gradient-text">Learn to Earn with AI</h1>
-                    <p>Discover actionable strategies to monetize your skills using the power of artificial intelligence.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slider Navigation Controls -->
-        <button class="slider-btn prev-btn">&#10094;</button>
-        <button class="slider-btn next-btn">&#10095;</button>
-        
-        <!-- Slider Dots -->
-        <div class="slider-dots">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-    </div>
-
-    <!-- Main Content -->
     <main class="container">
-        
-        <!-- AdSense Placeholder -->
-        <div class="ad-space">
-            [Google AdSense Banner Advertisement - 728x90]
-        </div>
-
-        <h2 class="section-title">Latest Articles</h2>
-        
-        <div class="blog-grid">
-            <!-- Article 1 -->
-            <a href="top-10-ai-tools-2026.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" alt="AI Robot">
+        <section class="ai-directory">
+            <div class="directory-header">
+                <span class="eyebrow">AI TOOL DIRECTORY</span>
+                <h1>AI Tools Directory</h1>
+                <p>Discover useful AI tools for writing, research, image creation, video, audio, coding, productivity and automation.</p>
+                <div class="tool-search">
+                    <input type="text" id="toolSearch" placeholder="Search AI tools..." onkeyup="searchTools()">
                 </div>
-                <div class="card-content">
-                    <span class="category">AI Tools</span>
-                    <h3 class="card-title">Top 10 AI Tools You Must Use in 2026</h3>
-                    <p class="card-excerpt">Discover the most powerful artificial intelligence tools that are changing the way we work and earn money today.</p>
-                    <div class="card-footer">
-                        <span>Aug 15, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
+            </div>
+            
+            <div class="tool-categories">
+                <button onclick="filterTools('all')">All</button>
+                <button onclick="filterTools('writing')">✍️ Writing</button>
+                <button onclick="filterTools('research')">🔎 Research</button>
+                <button onclick="filterTools('image')">🎨 Image</button>
+                <button onclick="filterTools('video')">🎬 Video</button>
+                <button onclick="filterTools('audio')">🎵 Audio</button>
+                <button onclick="filterTools('coding')">💻 Coding</button>
+                <button onclick="filterTools('productivity')">📊 Productivity</button>
+            </div>
+            
+            <h2>Featured AI Tools</h2>
+            <div class="tools-grid">
+                <article class="tool-card" data-category="writing">
+                    <div class="tool-icon">🤖</div>
+                    <span class="tool-category">Writing</span>
+                    <h3>ChatGPT</h3>
+                    <p>AI assistant for writing, research, brainstorming, coding and everyday tasks.</p>
+                    <div class="tool-meta">
+                        <span>Free + Paid</span>
+                        <span>★★★★★</span>
                     </div>
-                </div>
-            </a>
-
-            <!-- Article 2 -->
-            <a href="how-to-earn-with-chatgpt.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?auto=format&fit=crop&w=600&q=80" alt="Person working on laptop">
-                </div>
-                <div class="card-content">
-                    <span class="category">Make Money</span>
-                    <h3 class="card-title">How to Make $1000/Month Using ChatGPT</h3>
-                    <p class="card-excerpt">A complete beginner's guide to using AI for content creation, freelancing, and building passive income streams.</p>
-                    <div class="card-footer">
-                        <span>Aug 14, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
+                    <a href="#" class="tool-button">View Tool →</a>
+                </article>
+                
+                <article class="tool-card" data-category="research">
+                    <div class="tool-icon">🔎</div>
+                    <span class="tool-category">Research</span>
+                    <h3>Perplexity</h3>
+                    <p>AI-powered search and research assistant for finding and summarizing information.</p>
+                    <div class="tool-meta">
+                        <span>Free + Paid</span>
+                        <span>★★★★★</span>
                     </div>
-                </div>
-            </a>
-
-            <!-- Article 3 -->
-            <a href="future-of-ai-in-tech.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Tech circuit">
-                </div>
-                <div class="card-content">
-                    <span class="category">Tech News</span>
-                    <h3 class="card-title">The Future of AI: What to Expect Next?</h3>
-                    <p class="card-excerpt">From AGI to advanced automation, explore the future trends of artificial intelligence and how to prepare for them.</p>
-                    <div class="card-footer">
-                        <span>Aug 12, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
+                    <a href="#" class="tool-button">View Tool →</a>
+                </article>
+                
+                <article class="tool-card" data-category="image">
+                    <div class="tool-icon">🎨</div>
+                    <span class="tool-category">Image</span>
+                    <h3>Canva AI</h3>
+                    <p>AI-powered design tools for graphics, presentations and social media content.</p>
+                    <div class="tool-meta">
+                        <span>Free + Paid</span>
+                        <span>★★★★☆</span>
                     </div>
-                </div>
-            </a>
-
-            <!-- Article 4 -->
-            <a href="ai-vs-human-jobs-2026.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" alt="Robot working">
-                </div>
-                <div class="card-content">
-                    <span class="category">Jobs & Careers</span>
-                    <h3 class="card-title">Will AI Take Your Job? How to Stay Relevant</h3>
-                    <p class="card-excerpt">Discover which jobs are at risk, and learn how to upgrade your skills to thrive in the AI-driven economy.</p>
-                    <div class="card-footer">
-                        <span>Aug 16, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
+                    <a href="#" class="tool-button">View Tool →</a>
+                </article>
+                
+                <article class="tool-card" data-category="audio">
+                    <div class="tool-icon">🎵</div>
+                    <span class="tool-category">Audio</span>
+                    <h3>Suno AI</h3>
+                    <p>Generate high-quality music and vocals directly from text prompts.</p>
+                    <div class="tool-meta">
+                        <span>Free + Paid</span>
+                        <span>★★★★☆</span>
                     </div>
-                </div>
-            </a>
-
-            <!-- Article 5 -->
-            <a href="best-ai-image-generators.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="Cyberpunk design">
-                </div>
-                <div class="card-content">
-                    <span class="category">AI Tools</span>
-                    <h3 class="card-title">Top 5 AI Image Generators for Freelancers</h3>
-                    <p class="card-excerpt">A comparison of Midjourney, DALL-E, and others to help you create stunning graphics and sell them online.</p>
-                    <div class="card-footer">
-                        <span>Aug 16, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Article 6 -->
-            <a href="15-Aug-2026-ai-productivity-tools.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Productivity Tools">
-                </div>
-                <div class="card-content">
-                    <span class="category">AI Tools</span>
-                    <h3 class="card-title">Top 7 Best AI Productivity Tools to Automate Your Workflow in 2026</h3>
-                    <p class="card-excerpt">Discover how modern AI writing assistants, automated coding copilots, and intelligent workflow managers can triple your daily output.</p>
-                    <div class="card-footer">
-                        <span>Aug 15, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Article 7 -->
-            <a href="15-Aug-2026-ai-video-generators.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Video Generators">
-                </div>
-                <div class="card-content">
-                    <span class="category">AI Tools</span>
-                    <h3 class="card-title">How AI Video Generators Are Changing Content Creation</h3>
-                    <p class="card-excerpt">A step-by-step masterclass on leveraging 10-second cinematic AI video tools to build high-reach Shorts and Reels.</p>
-                    <div class="card-footer">
-                        <span>Aug 15, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Article 8 -->
-            <a href="15-Aug-2026-high-income-tech-skills.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=600&q=80" alt="Remote Skills">
-                </div>
-                <div class="card-content">
-                    <span class="category">Make Money</span>
-                    <h3 class="card-title">Top 5 High-Income Tech and AI Skills for Remote Freelancing</h3>
-                    <p class="card-excerpt">Explore the most in-demand freelance domains in 2026, including prompt engineering and workflow automation.</p>
-                    <div class="card-footer">
-                        <span>Aug 15, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
-                    </div>
-                </div>
-            </a>
-            <!-- Article 9 -->
-            <a href="16-Aug-2026-how-to-start-freelancing-with-ai.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Freelancer working">
-                </div>
-                <div class="card-content">
-                    <span class="category">Make Money</span>
-                    <h3 class="card-title">How to Start Freelancing with AI in 2026: A Step-by-Step Guide</h3>
-                    <p class="card-excerpt">Learn exactly how to use AI tools to start a highly profitable freelance career with zero upfront investment.</p>
-                    <div class="card-footer">
-                        <span>Aug 16, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
-                    </div>
-                </div>
-            </a>
-            <!-- Article 10 -->
-            <a href="17-Aug-2026-top-5-free-ai-chrome-extensions.html" class="card">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="Cyber Security and Tech">
-                </div>
-                <div class="card-content">
-                    <span class="category">AI Tools</span>
-                    <h3 class="card-title">Top 5 Free AI Chrome Extensions for Ultimate Productivity in 2026</h3>
-                    <p class="card-excerpt">Transform your web browser into a powerful assistant with these 5 must-have AI Chrome extensions for productivity.</p>
-                    <div class="card-footer">
-                        <span>Aug 17, 2026</span>
-                        <span class="read-more">Read More &rarr;</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- AdSense Placeholder -->
-        <div class="ad-space">
-            [Google AdSense Responsive Advertisement]
-        </div>
+                    <a href="#" class="tool-button">View Tool →</a>
+                </article>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-content" style="display:flex; justify-content:space-around; text-align:left;">
             <div>
-                <div class="footer-logo">AI Tech Horizon</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Your #1 source for AI news, tools, and earning strategies. Stay ahead of the curve.</p>
+                <h3 style="color:white; margin-bottom:10px;">AI Tech Horizon</h3>
+                <p style="color:#aaa;">Practical AI Tools, Tutorials & Experiments.</p>
             </div>
             <div>
-                <h4 style="margin-bottom: 15px; color: #fff;">Quick Links</h4>
-                                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About Us</a>
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="disclaimer.html">Disclaimer</a>
-                    <a href="terms.html">Terms & Conditions</a>
-                </div>
+                <h4 style="color:white;">Explore</h4>
+                <a href="ai-tools.html" style="color:#aaa; display:block; text-decoration:none;">AI Tools</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">AI Guides</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">Experiments</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">AI for Work</a>
             </div>
             <div>
-                <h4 style="margin-bottom: 15px; color: #fff;">Connect With Us</h4>
-                <div class="footer-links">
-                    <a href="https://wa.me/923067373441" target="_blank">📱 WhatsApp</a>
-                </div>
+                <h4 style="color:white;">Company</h4>
+                <a href="about.html" style="color:#aaa; display:block; text-decoration:none;">About</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">Contact</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">Editorial Policy</a>
+                <a href="author.html" style="color:#aaa; display:block; text-decoration:none;">Authors</a>
+            </div>
+            <div>
+                <h4 style="color:white;">Legal</h4>
+                <a href="privacy-policy.html" style="color:#aaa; display:block; text-decoration:none;">Privacy Policy</a>
+                <a href="terms.html" style="color:#aaa; display:block; text-decoration:none;">Terms of Service</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">Disclaimer</a>
+                <a href="#" style="color:#aaa; display:block; text-decoration:none;">Affiliate Disclosure</a>
             </div>
         </div>
-        <div class="copyright">
+        <div class="copyright" style="text-align:center; padding-top:20px; border-top:1px solid #444; margin-top:20px;">
             &copy; 2026 AI Tech Horizon. All rights reserved.
         </div>
     </footer>
-
+    
+    <script>
+        function filterTools(category) {
+            const cards = document.querySelectorAll(".tool-card");
+            cards.forEach(card => {
+                if (category === "all" || card.dataset.category === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+        function searchTools() {
+            const query = document.getElementById("toolSearch").value.toLowerCase();
+            const cards = document.querySelectorAll(".tool-card");
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
