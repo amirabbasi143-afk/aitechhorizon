@@ -201,6 +201,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://aitechhorizon.online/ai-prompts-cheat-sheet.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://aitechhorizon.online/ai-tools.html</loc>
     <lastmod>2026-10-11</lastmod>
     <priority>0.80</priority>
@@ -267,6 +272,21 @@
   </url>
   <url>
     <loc>https://aitechhorizon.online/terms.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://aitechhorizon.online/tool-chatgpt.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://aitechhorizon.online/tool-claude.html</loc>
+    <lastmod>2026-10-11</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://aitechhorizon.online/tool-perplexity.html</loc>
     <lastmod>2026-10-11</lastmod>
     <priority>0.80</priority>
   </url>

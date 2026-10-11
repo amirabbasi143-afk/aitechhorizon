@@ -10,7 +10,7 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HTRVH89QV8');</script>
 </head>
 <body>
-        <nav id="navbar">
+    <nav id="navbar">
         <a href="index.html" class="logo">AI Tech Horizon</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -22,15 +22,19 @@
             <a href="contact.html">Contact</a>
         </div>
     </nav>
-
     <main class="container">
         <section class="ai-directory">
             <div class="directory-header">
-                <span class="eyebrow">AI TOOL DIRECTORY</span>
+                <span class="eyebrow">AI TOOL DIRECTORY & ENCYCLOPEDIA</span>
                 <h1>AI Tools Directory</h1>
-                <p>Discover useful AI tools for writing, research, image creation, video, audio, coding, productivity and automation.</p>
+                <p>Discover useful AI tools tested for real-world work, study and productivity. Hand-tested specs, prompt examples, and unbiased ratings.</p>
+                
+                <div style="margin-top:20px;">
+                    <a href="ai-prompts-cheat-sheet.html" class="hero-btn" style="font-size:0.95rem; padding:10px 22px;">⚡ Open AI Prompts Cheat Sheet</a>
+                </div>
+
                 <div class="tool-search">
-                    <input type="text" id="toolSearch" placeholder="Search AI tools..." onkeyup="searchTools()">
+                    <input type="text" id="toolSearch" placeholder="Search AI tools by name, task, or feature..." onkeyup="searchTools()">
                 </div>
             </div>
             
@@ -38,67 +42,113 @@
                 <button onclick="filterTools('all')">All</button>
                 <button onclick="filterTools('writing')">✍️ Writing</button>
                 <button onclick="filterTools('research')">🔎 Research</button>
-                <button onclick="filterTools('image')">🎨 Image</button>
-                <button onclick="filterTools('video')">🎬 Video</button>
-                <button onclick="filterTools('audio')">🎵 Audio</button>
                 <button onclick="filterTools('coding')">💻 Coding</button>
+                <button onclick="filterTools('image')">🎨 Image</button>
+                <button onclick="filterTools('audio')">🎵 Audio</button>
                 <button onclick="filterTools('productivity')">📊 Productivity</button>
             </div>
             
-            <h2>Featured AI Tools</h2>
+            <h2>Featured AI Tools & In-Depth Reviews</h2>
             <div class="tools-grid">
-                <article class="tool-card" data-category="writing">
+                <article class="tool-card" data-category="writing coding">
                     <div class="tool-icon">🤖</div>
-                    <span class="tool-category">Writing</span>
+                    <span class="tool-category">Writing • Coding</span>
                     <h3>ChatGPT</h3>
-                    <p>AI assistant for writing, research, brainstorming, coding and everyday tasks.</p>
+                    <p>Premier general AI assistant for multi-modal reasoning, coding, and workflow automation.</p>
                     <div class="tool-meta">
-                        <span>Free + Paid</span>
-                        <span>★★★★★</span>
+                        <span>Free + $20/mo</span>
+                        <span>★★★★★ (9.2)</span>
                     </div>
-                    <a href="#" class="tool-button">View Tool →</a>
+                    <a href="tool-chatgpt.html" class="tool-button" style="background:#0284c7; color:white;">In-Depth Review →</a>
+                </article>
+
+                <article class="tool-card" data-category="coding writing">
+                    <div class="tool-icon">⚡</div>
+                    <span class="tool-category">Coding • Reasoning</span>
+                    <h3>Claude 3.5 Sonnet</h3>
+                    <p>Highest performing AI model for software engineering, refactoring, and natural writing tone.</p>
+                    <div class="tool-meta">
+                        <span>Free + $20/mo</span>
+                        <span>★★★★★ (9.5)</span>
+                    </div>
+                    <a href="tool-claude.html" class="tool-button" style="background:#0284c7; color:white;">In-Depth Review →</a>
                 </article>
                 
                 <article class="tool-card" data-category="research">
                     <div class="tool-icon">🔎</div>
-                    <span class="tool-category">Research</span>
-                    <h3>Perplexity</h3>
-                    <p>AI-powered search and research assistant for finding and summarizing information.</p>
+                    <span class="tool-category">Research • Search</span>
+                    <h3>Perplexity AI</h3>
+                    <p>Real-time conversational search engine with verified academic and live web citations.</p>
                     <div class="tool-meta">
-                        <span>Free + Paid</span>
-                        <span>★★★★★</span>
+                        <span>Free + $20/mo</span>
+                        <span>★★★★★ (9.3)</span>
                     </div>
-                    <a href="#" class="tool-button">View Tool →</a>
+                    <a href="tool-perplexity.html" class="tool-button" style="background:#0284c7; color:white;">In-Depth Review →</a>
                 </article>
                 
                 <article class="tool-card" data-category="image">
                     <div class="tool-icon">🎨</div>
-                    <span class="tool-category">Image</span>
+                    <span class="tool-category">Design • Image</span>
                     <h3>Canva AI</h3>
-                    <p>AI-powered design tools for graphics, presentations and social media content.</p>
+                    <p>Accessible AI graphics generation, background removal, and presentation automation.</p>
                     <div class="tool-meta">
                         <span>Free + Paid</span>
-                        <span>★★★★☆</span>
+                        <span>★★★★☆ (8.8)</span>
                     </div>
-                    <a href="#" class="tool-button">View Tool →</a>
+                    <a href="10-Sep-2026-how-to-use-ai-graphic-design.html" class="tool-button">Tutorial & Guide →</a>
                 </article>
                 
                 <article class="tool-card" data-category="audio">
                     <div class="tool-icon">🎵</div>
-                    <span class="tool-category">Audio</span>
+                    <span class="tool-category">Audio • Music</span>
                     <h3>Suno AI</h3>
-                    <p>Generate high-quality music and vocals directly from text prompts.</p>
+                    <p>State-of-the-art text-to-music generation with realistic vocals and custom genres.</p>
                     <div class="tool-meta">
                         <span>Free + Paid</span>
-                        <span>★★★★☆</span>
+                        <span>★★★★☆ (8.9)</span>
                     </div>
-                    <a href="#" class="tool-button">View Tool →</a>
+                    <a href="08-Sep-2026-best-ai-music-generators-reviewed.html" class="tool-button">Review & Test →</a>
+                </article>
+
+                <article class="tool-card" data-category="audio">
+                    <div class="tool-icon">🎙️</div>
+                    <span class="tool-category">Audio • Speech</span>
+                    <h3>ElevenLabs</h3>
+                    <p>Industry-standard realistic AI voice synthesis, voice cloning, and audio dubbing.</p>
+                    <div class="tool-meta">
+                        <span>Free + Paid</span>
+                        <span>★★★★★ (9.4)</span>
+                    </div>
+                    <a href="02-Sep-2026-tested-ai-voice-generators.html" class="tool-button">Testing Guide →</a>
+                </article>
+
+                <article class="tool-card" data-category="productivity">
+                    <div class="tool-icon">📝</div>
+                    <span class="tool-category">Productivity</span>
+                    <h3>AI Note-Taking Apps</h3>
+                    <p>Automate meeting summaries, transcription, and action items with tested AI tools.</p>
+                    <div class="tool-meta">
+                        <span>Free + Paid</span>
+                        <span>★★★★☆ (8.7)</span>
+                    </div>
+                    <a href="18-Sep-2026-best-ai-note-taking-apps.html" class="tool-button">Comparison Test →</a>
+                </article>
+
+                <article class="tool-card" data-category="productivity">
+                    <div class="tool-icon">🤖</div>
+                    <span class="tool-category">Automation</span>
+                    <h3>AI Data Entry Automation</h3>
+                    <p>Practical workflow to extract and automate tabular spreadsheet entry using AI.</p>
+                    <div class="tool-meta">
+                        <span>Free Workflows</span>
+                        <span>★★★★☆ (8.9)</span>
+                    </div>
+                    <a href="18-Sep-2026-automate-data-entry-with-ai.html" class="tool-button">Step-by-Step →</a>
                 </article>
             </div>
         </section>
     </main>
-
-        <footer>
+    <footer>
         <div class="footer-content" style="display:flex; justify-content:space-around; text-align:left; flex-wrap:wrap; gap:20px;">
             <div style="flex:1; min-width:200px;">
                 <h3 style="color:white; margin-bottom:10px;">AI Tech Horizon</h3>
@@ -133,7 +183,7 @@
         function filterTools(category) {
             const cards = document.querySelectorAll(".tool-card");
             cards.forEach(card => {
-                if (category === "all" || card.dataset.category === category) {
+                if (category === "all" || card.dataset.category.includes(category)) {
                     card.style.display = "block";
                 } else {
                     card.style.display = "none";
@@ -156,4 +206,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
