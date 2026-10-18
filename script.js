@@ -1,99 +1,61 @@
-// Add a blur effect to navbar on scroll
-window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        nav.style.padding = '15px 50px';
-        nav.style.background = 'rgba(255, 255, 255, 0.98)';
-    } else {
-        nav.style.padding = '20px 50px';
-        nav.style.background = 'rgba(255, 255, 255, 0.95)';
-    }
-});
-
-// Simple animation for elements as they enter viewport
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, { threshold: 0.1 });
-
-// Select elements to animate
-document.querySelectorAll('.card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Slider Logic
-let slideIndex = 1;
-let slideInterval;
-
-function initSlider() {
-    let slides = document.getElementsByClassName("slide");
-    if (!slides.length) return; // Only run if slider exists on page
-
-    showSlides(slideIndex);
-    startSlideTimer();
-
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            plusSlides(-1);
-            resetSlideTimer();
-        });
-        nextBtn.addEventListener('click', () => {
-            plusSlides(1);
-            resetSlideTimer();
-        });
-    }
-}
-
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-    resetSlideTimer();
-}
-
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("slide");
-    let dots = document.getElementsByClassName("dot");
-    
-    if (n > slides.length) {slideIndex = 1}    
-    if (n < 1) {slideIndex = slides.length}
-    
-    for (i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active");  
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].classList.remove("active");
-    }
-    
-    slides[slideIndex-1].classList.add("active");  
-    dots[slideIndex-1].classList.add("active");
-}
-
-function startSlideTimer() {
-    slideInterval = setInterval(function() {
-        plusSlides(1);
-    }, 5000); // Change image every 5 seconds
-}
-
-function resetSlideTimer() {
-    clearInterval(slideInterval);
-    startSlideTimer();
-}
-
+// AI Tech Horizon - Clean & Non-Blocking Client Script
 document.addEventListener('DOMContentLoaded', () => {
-    initSlider();
-});
+    // 1. Smooth navbar scroll shadow (No breaking mobile layout or padding)
+    const nav = document.getElementById('navbar');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.06)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    }
 
+    // 2. Real-time article search for index.html
+    const searchInput = document.getElementById('articleSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.blog-grid .card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // 3. Category filter pills for index.html
+    const pills = document.querySelectorAll('.pill-filter');
+    if (pills.length > 0) {
+        pills.forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                e.preventDefault();
+                pills.forEach(p => {
+                    p.style.backgroundColor = 'var(--surface)';
+                    p.style.color = 'var(--text-muted)';
+                    p.style.borderColor = 'var(--border-color)';
+                });
+                pill.style.backgroundColor = 'var(--primary)';
+                pill.style.color = '#ffffff';
+                pill.style.borderColor = 'var(--primary)';
+                
+                const cat = pill.getAttribute('data-cat');
+                const cards = document.querySelectorAll('.blog-grid .card');
+                cards.forEach(card => {
+                    const tag = card.querySelector('.tag');
+                    const tagText = tag ? tag.innerText.toLowerCase() : '';
+                    if (cat === 'all' || tagText.includes(cat.toLowerCase())) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+});
