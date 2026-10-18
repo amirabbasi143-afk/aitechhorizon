@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact AI Tech Horizon: Inquiries, editorial feedback, and general support.">
     <title>Contact Us - AI Tech Horizon</title>
     <link rel="stylesheet" href="style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTRVH89QV8"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HTRVH89QV8');</script>
 </head>
 <body>
-        <nav id="navbar">
+    <nav id="navbar">
         <a href="index.html" class="logo">AI Tech Horizon</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -20,61 +23,68 @@
         </div>
     </nav>
     <main class="container">
-        <article class="blog-post" style="max-width:800px; margin:40px auto; text-align:center; padding:40px; background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.05);">
-            <h1 class="gradient-text">Contact Us</h1>
-            <p style="font-size:1.2rem; color:#555; margin-top:20px;">Have a question, feedback, or a partnership inquiry? We'd love to hear from you!</p>
-            
-            <div style="margin:40px 0; padding:20px; background:#f5f7fa; border-radius:10px;">
-                <h3 style="margin-bottom:10px;">Email Us Directly</h3>
-                <p style="font-size:1.3rem; font-weight:bold; color:#007bff;">contact@aitechhorizon.online</p>
-                <p style="color:#666; margin-top:10px;">We typically reply within 24-48 hours.</p>
+        <div class="article-wrapper" style="margin-top: 50px; text-align: center;">
+            <span class="tag">GET IN TOUCH</span>
+            <h1 style="font-size: 2.4rem; margin: 15px 0 10px;">Contact Our Editorial Team</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 35px;">Have feedback, a partnership proposal, or a technical inquiry? We would love to hear from you.</p>
+
+            <div style="background: var(--primary-light); border: 1px solid #bfdbfe; border-radius: var(--radius-md); padding: 25px; margin-bottom: 40px; text-align: left;">
+                <h3 style="color: var(--primary); margin-bottom: 8px;">Direct Inquiries</h3>
+                <p style="margin: 0; color: var(--text-main);"><strong>Email:</strong> <a href="mailto:contact@aitechhorizon.online" style="color: var(--primary); font-weight: 600;">contact@aitechhorizon.online</a></p>
+                <p style="margin: 6px 0 0; color: var(--text-muted); font-size: 0.9rem;">We typically review and respond to inquiries within 24 to 48 business hours.</p>
             </div>
 
-            <form style="display:flex; flex-direction:column; gap:15px; text-align:left;" onsubmit="event.preventDefault(); alert('Message Sent!');">
-                <label style="font-weight:bold;">Name</label>
-                <input type="text" placeholder="Your Name" required style="padding:15px; border:1px solid #ddd; border-radius:8px; font-size:1rem;">
-                
-                <label style="font-weight:bold;">Email</label>
-                <input type="email" placeholder="Your Email" required style="padding:15px; border:1px solid #ddd; border-radius:8px; font-size:1rem;">
-                
-                <label style="font-weight:bold;">Message</label>
-                <textarea rows="5" placeholder="How can we help?" required style="padding:15px; border:1px solid #ddd; border-radius:8px; font-size:1rem; resize:vertical;"></textarea>
-                
-                <button type="submit" class="hero-btn" style="border:none; cursor:pointer;">Send Message</button>
+            <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent successfully.');" style="text-align: left; display: flex; flex-direction: column; gap: 18px;">
+                <div>
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem;">Full Name</label>
+                    <input type="text" required placeholder="Your full name" style="width: 100%; padding: 12px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 1rem; outline: none;">
+                </div>
+                <div>
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem;">Email Address</label>
+                    <input type="email" required placeholder="name@domain.com" style="width: 100%; padding: 12px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 1rem; outline: none;">
+                </div>
+                <div>
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem;">Subject</label>
+                    <input type="text" required placeholder="Brief subject" style="width: 100%; padding: 12px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 1rem; outline: none;">
+                </div>
+                <div>
+                    <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem;">Message</label>
+                    <textarea rows="5" required placeholder="How can we assist you?" style="width: 100%; padding: 12px 18px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 1rem; outline: none; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 12px 30px;">Send Message</button>
             </form>
-        </article>
+        </div>
     </main>
-        <footer>
-        <div class="footer-content" style="display:flex; justify-content:space-around; text-align:left; flex-wrap:wrap; gap:20px;">
-            <div style="flex:1; min-width:200px;">
-                <h3 style="color:white; margin-bottom:10px;">AI Tech Horizon</h3>
-                <p style="color:#aaa;">Practical AI Tools, Tutorials & Experiments.</p>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>AI Tech Horizon</h3>
+                <p>Practical AI Tools, Tutorials & Experiments. We test AI tools, compare real-world performance, and show you practical ways to use AI for work, study, and productivity.</p>
             </div>
-            <div style="flex:1; min-width:150px;">
-                <h4 style="color:white;">Explore</h4>
-                <a href="ai-tools.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">AI Tools</a>
-                <a href="guides.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Guides</a>
-                <a href="experiments.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Experiments</a>
-                <a href="make-money.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">AI for Work</a>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="ai-tools.html">AI Tools Directory</a>
+                <a href="guides.html">Practical Guides</a>
+                <a href="experiments.html">Experiments</a>
+                <a href="make-money.html">AI for Work</a>
             </div>
-            <div style="flex:1; min-width:150px;">
-                <h4 style="color:white;">Company</h4>
-                <a href="about.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">About Us</a>
-                <a href="contact.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Contact</a>
-                <a href="author.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Authors</a>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="ai-prompts-cheat-sheet.html">Prompts Cheat Sheet</a>
             </div>
-            <div style="flex:1; min-width:150px;">
-                <h4 style="color:white;">Legal</h4>
-                <a href="privacy-policy.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Privacy Policy</a>
-                <a href="terms.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Terms of Service</a>
-                <a href="privacy-policy.html" style="color:#aaa; display:block; text-decoration:none; margin-bottom:5px;">Disclaimer</a>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="disclaimer.html">Disclaimer</a>
             </div>
         </div>
-        <div class="copyright" style="text-align:center; padding-top:20px; border-top:1px solid #444; margin-top:20px;">
+        <div class="footer-bottom">
             &copy; 2026 AI Tech Horizon. All rights reserved.
         </div>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
 
