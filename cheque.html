@@ -1,0 +1,1617 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IUB Manual Cheque Printing & Daily Reports</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+:root {
+  --primary: #0f5132;
+  --primary-light: #e8f5e9;
+  --primary-dark: #0a3622;
+  --accent: #2563eb;
+  --dark: #1e293b;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Cheque Calibration Offsets */
+  --cal-x: 0mm;
+  --cal-y: 0mm;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f1f5f9;
+  color: var(--dark);
+  line-height: 1.5;
+}
+
+/* Header & Navbar */
+header {
+  background: linear-gradient(135deg, #0b4f2c 0%, #134e4a 100%);
+  color: white;
+  padding: 14px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.header-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.brand-text h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand-text p {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Operator Selector */
+.operator-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.12);
+  padding: 6px 12px;
+  border-radius: 30px;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.operator-bar label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #d1fae5;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.operator-select {
+  background: white;
+  color: #064e3b;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-add-op {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-add-op:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+  max-width: 1300px;
+  margin: 18px auto 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  background: white;
+  border: 1px solid var(--gray-300);
+  border-bottom: none;
+  padding: 10px 20px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  background: var(--gray-50);
+  color: var(--primary);
+}
+
+.tab-btn.active {
+  background: white;
+  color: var(--primary);
+  border-top: 3px solid var(--primary);
+  font-weight: 700;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
+}
+
+/* Main Container */
+main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Grid Layout for Entry Screen */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Card */
+.card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-subtitle {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 6px;
+}
+
+.form-group label span.req {
+  color: var(--danger);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--dark);
+  background: white;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.12);
+}
+
+.amount-input-wrapper {
+  position: relative;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: var(--gray-600);
+  font-size: 0.9rem;
+}
+
+.amount-input-wrapper input {
+  padding-left: 45px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #064e3b;
+}
+
+.words-box {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #0f5132;
+  font-weight: 600;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  flex: 2;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-800);
+  border: 1px solid var(--gray-300);
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  background: var(--gray-200);
+}
+
+.btn-success {
+  background: #15803d;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #166534;
+}
+
+/* Preview Column */
+.preview-container {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preview-badge {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.preview-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.toggle-label {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Cheque Sheet (Exact A4 Scale Representation) */
+.cheque-viewport {
+  background: #94a3b8;
+  padding: 20px;
+  border-radius: 8px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#cheque-sheet {
+  width: 210mm;
+  height: 297mm;
+  background: white;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transform-origin: top center;
+}
+
+/* Guide overlay for screen preview */
+.guide-mode .cheque-guide-slip {
+  position: absolute;
+  left: 10mm;
+  top: 15mm;
+  width: 190mm;
+  height: 48mm;
+  border: 1px dashed #cbd5e1;
+  pointer-events: none;
+}
+
+.guide-mode .cheque-guide-slip::after {
+  content: 'Counterfoil Slip Section';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.guide-mode .cheque-guide-body {
+  position: absolute;
+  left: 10mm;
+  top: 72mm;
+  width: 190mm;
+  height: 45mm;
+  border: 1px dashed #cbd5e1;
+  pointer-events: none;
+}
+
+.guide-mode .cheque-guide-body::after {
+  content: 'Main Bank Cheque Leaf Section';
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.guide-mode .cheque-guide-bottom {
+  position: absolute;
+  left: 10mm;
+  top: 150mm;
+  width: 190mm;
+  height: 25mm;
+  border: 1px dashed #cbd5e1;
+  pointer-events: none;
+}
+
+/* Target Positions (Coordinates from Word docx and PDF analysis) */
+.print-field {
+  position: absolute;
+  color: #000;
+  font-family: "Calibri", "Arial", sans-serif;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Top Section (Counterfoil) */
+#pos-counter-date {
+  left: calc(120.5mm + var(--cal-x));
+  top: calc(21.3mm + var(--cal-y));
+  font-size: 10pt;
+}
+
+#pos-counter-name {
+  left: calc(47.0mm + var(--cal-x));
+  top: calc(28.6mm + var(--cal-y));
+  font-size: 9pt;
+}
+
+#pos-counter-amount {
+  left: calc(121.2mm + var(--cal-x));
+  top: calc(37.4mm + var(--cal-y));
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+#pos-counter-purpose {
+  left: calc(17.3mm + var(--cal-x));
+  top: calc(37.6mm + var(--cal-y));
+  font-size: 8.5pt;
+}
+
+#pos-counter-rupees {
+  left: calc(47.0mm + var(--cal-x));
+  top: calc(45.0mm + var(--cal-y));
+  font-size: 8.5pt;
+}
+
+/* Middle Section (Cheque Leaf) */
+#pos-chq-date {
+  left: calc(143.7mm + var(--cal-x));
+  top: calc(78.5mm + var(--cal-y));
+  font-size: 10pt;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+#pos-chq-name {
+  left: calc(42.9mm + var(--cal-x));
+  top: calc(89.0mm + var(--cal-y));
+  font-size: 10.5pt;
+  font-weight: bold;
+}
+
+#pos-chq-rupees {
+  left: calc(43.1mm + var(--cal-x));
+  top: calc(97.3mm + var(--cal-y));
+  font-size: 9.5pt;
+}
+
+#pos-chq-amount {
+  left: calc(154.9mm + var(--cal-x));
+  top: calc(93.9mm + var(--cal-y));
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+/* Bottom Section (Slip) */
+#pos-slip-purpose {
+  left: calc(46.4mm + var(--cal-x));
+  top: calc(159.2mm + var(--cal-y));
+  font-size: 8.5pt;
+}
+
+#pos-slip-date {
+  left: calc(140.0mm + var(--cal-x));
+  top: calc(159.2mm + var(--cal-y));
+  font-size: 8.5pt;
+}
+
+/* Reports Table Styles */
+.reports-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid var(--primary);
+}
+
+.summary-card .label {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.summary-card .val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-top: 4px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.report-table th {
+  background: #f8fafc;
+  color: #334155;
+  font-weight: 700;
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--gray-200);
+  white-space: nowrap;
+}
+
+.report-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gray-200);
+  color: #1e293b;
+}
+
+.report-table tr:hover {
+  background: #f8fafc;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-operator {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+
+.btn-icon:hover {
+  background: var(--gray-200);
+}
+
+.btn-icon.delete:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Toast Notification */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1e293b;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 9999;
+}
+
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ========================================================== */
+/* PRINT CSS - STRICTLY ZERO EXTRA LINES / PURE TEXT DROP   */
+/* ========================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    background: transparent !important;
+    overflow: hidden !important;
+  }
+
+  /* Hide all UI elements, buttons, navbar, headers, footers */
+  header, nav, .workspace-grid > .card, .preview-header, 
+  .reports-toolbar, .summary-cards, .table-responsive, 
+  .settings-container, #toast, .no-print, .cheque-guide-slip,
+  .cheque-guide-body, .cheque-guide-bottom {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+
+  .preview-container, .cheque-viewport {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: block !important;
+  }
+
+  #cheque-sheet {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  /* ABSOLUTE ZERO LINE GUARANTEE: NO BORDERS, NO OUTLINES, NO BACKGROUNDS */
+  #cheque-sheet * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-field {
+    color: #000000 !important;
+  }
+}
+
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="header-container">
+      <div class="branding">
+        <div class="brand-icon">🏛️</div>
+        <div class="brand-text">
+          <h1>IUB Manual Cheque System</h1>
+          <p>Islamia University of Bahawalpur • Cheque Leaf Printing & Reporting</p>
+        </div>
+      </div>
+
+      <!-- Operator Switcher -->
+      <div class="operator-bar">
+        <label for="operator-select">👤 Operator:</label>
+        <select id="operator-select" class="operator-select">
+          <option value="kashif bashir">kashif bashir</option>
+          <option value="Muhammad Dawood">Muhammad Dawood</option>
+          <option value="Amir">Amir</option>
+        </select>
+        <button id="btn-add-op" class="btn-add-op" title="Add another user / operator">+ Add New</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs no-print">
+    <button class="tab-btn active" data-tab="tab-entry">
+      <span>📝</span> Issue & Print Cheque
+    </button>
+    <button class="tab-btn" data-tab="tab-reports">
+      <span>📊</span> Daily Cheque Reports & Excel
+    </button>
+    <button class="tab-btn" data-tab="tab-settings">
+      <span>⚙️</span> Printer Alignment & Settings
+    </button>
+  </nav>
+
+  <main>
+    <!-- TAB 1: Cheque Entry & Live Print Preview -->
+    <section id="tab-entry" class="tab-content active">
+      <div class="workspace-grid">
+        
+        <!-- Left Column: Entry Form -->
+        <div class="card no-print">
+          <h2 class="card-title"><span>✍️</span> Cheque Data Entry</h2>
+          <p class="card-subtitle">Fill the details below. Amount will auto-convert to English words.</p>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: #f0fdf4; padding: 8px 12px; border-radius: 6px; border: 1px solid #bbf7d0;">
+            <span style="font-size: 0.82rem; font-weight: 600; color: #166534;">📅 Daily Serial Status:</span>
+            <span id="badge-daily-sr" style="font-weight: 700; font-size: 0.9rem; color: #15803d;">Sr. No: #1 (Starts fresh daily)</span>
+          </div>
+
+          <form id="form-cheque" onsubmit="return false;">
+            <div class="form-group">
+              <label for="input-date">Cheque Date <span class="req">*</span></label>
+              <input type="date" id="input-date" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="input-payee">Payee Name & CNIC / Account <span class="req">*</span></label>
+              <input type="text" id="input-payee" class="form-control" list="payee-suggestions" placeholder="e.g. Ayesha Akbar (31302-7388542-2)" required autocomplete="off">
+              <datalist id="payee-suggestions"></datalist>
+            </div>
+
+            <div class="form-group">
+              <label for="input-amount">Amount (in Figures) <span class="req">*</span></label>
+              <div class="amount-input-wrapper">
+                <span class="currency-symbol">Rs.</span>
+                <input type="number" id="input-amount" class="form-control" placeholder="e.g. 230400" min="1" step="1" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-rupees">Amount in Words (Auto-Generated English)</label>
+              <input type="text" id="input-rupees" class="form-control" placeholder="Auto-fills from amount...">
+            </div>
+
+            <div class="form-group">
+              <label for="input-purpose">Purpose / Description</label>
+              <input type="text" id="input-purpose" class="form-control" list="purpose-presets" value="payment of part time" placeholder="e.g. payment of part time">
+              <datalist id="purpose-presets">
+                <option value="payment of part time">
+                <option value="payment of salary">
+                <option value="remuneration payment">
+                <option value="honorarium payment">
+                <option value="scholarship grant">
+                <option value="vendor payment">
+              </datalist>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" id="btn-print-cheque" class="btn btn-primary">
+                <span>🖨️</span> Print Cheque
+              </button>
+              <button type="button" id="btn-save-only" class="btn btn-secondary" title="Save without opening print dialog">
+                <span>💾</span> Save Only
+              </button>
+              <button type="button" id="btn-reset-form" class="btn btn-secondary" title="Clear form">
+                <span>🔄</span> New
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Column: Live Printable Sheet Preview -->
+        <div class="preview-container">
+          <div class="preview-header no-print">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="preview-badge">LIVE CHEQUE PREVIEW</span>
+              <small style="color: #64748b;">Exact bank leaf coordinates</small>
+            </div>
+            <div class="preview-controls">
+              <label class="toggle-label">
+                <input type="checkbox" id="toggle-guide" checked>
+                <span>Show Guide Boxes</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Printable Area (A4 Leaf) -->
+          <div class="cheque-viewport">
+            <div id="cheque-sheet" class="guide-mode">
+              <!-- Visual Guide Outlines (Screen Only, Hidden on Print) -->
+              <div class="cheque-guide-slip"></div>
+              <div class="cheque-guide-body"></div>
+              <div class="cheque-guide-bottom"></div>
+
+              <!-- ============================================== -->
+              <!-- 1. COUNTERFOIL SLIP (TOP SECTION)             -->
+              <!-- ============================================== -->
+              <div id="pos-counter-date" class="print-field">07-10-2026 02:26 pm,print By:kashif bashir</div>
+              <div id="pos-counter-name" class="print-field">Ayesha Akbar (31302-7388542-2)</div>
+              <div id="pos-counter-amount" class="print-field">230400/-</div>
+              <div id="pos-counter-purpose" class="print-field">payment of part time</div>
+              <div id="pos-counter-rupees" class="print-field">two hundred and thirty thosuand four hundred only</div>
+
+              <!-- ============================================== -->
+              <!-- 2. MAIN BANK CHEQUE LEAF (MIDDLE SECTION)      -->
+              <!-- ============================================== -->
+              <div id="pos-chq-date" class="print-field">10/7/2026</div>
+              <div id="pos-chq-name" class="print-field">Ayesha Akbar (31302-7388542-2)</div>
+              <div id="pos-chq-rupees" class="print-field">two hundred and thirty thosuand four hundred only</div>
+              <div id="pos-chq-amount" class="print-field">230400/-</div>
+
+              <!-- ============================================== -->
+              <!-- 3. SLIP SECTION (BOTTOM)                       -->
+              <!-- ============================================== -->
+              <div id="pos-slip-purpose" class="print-field">payment of part time</div>
+              <div id="pos-slip-date" class="print-field">10/7/2026</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAB 2: Daily Reports & Excel Download -->
+    <section id="tab-reports" class="tab-content">
+      <div class="card">
+        <div class="reports-toolbar">
+          <div class="filter-group">
+            <label for="report-filter-date" style="font-weight: 600; font-size: 0.88rem;">Select Date:</label>
+            <input type="date" id="report-filter-date" class="form-control" style="width: 170px;">
+            <button id="btn-filter-today" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.85rem;">Today</button>
+            <button id="btn-filter-all" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.85rem;">All Dates</button>
+            <input type="text" id="report-search" class="form-control" placeholder="🔍 Search payee, CNIC, purpose..." style="width: 250px;">
+          </div>
+          <div>
+            <button id="btn-export-excel" class="btn btn-success">
+              <span>📥</span> Download Excel Sheet (.xlsx)
+            </button>
+          </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+          <div class="summary-card">
+            <div class="label">Total Cheques</div>
+            <div id="total-cheques-count" class="val">0</div>
+          </div>
+          <div class="summary-card" style="border-left-color: #10b981;">
+            <div class="label">Total Amount Issued</div>
+            <div id="total-cheques-amount" class="val">Rs. 0/-</div>
+          </div>
+        </div>
+
+        <!-- Cheque History Table -->
+        <div class="table-responsive">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">Sr. No.</th>
+                <th>Date & Timestamp</th>
+                <th>Payee Name & CNIC</th>
+                <th>Amount (Rs.)</th>
+                <th>Amount in Words</th>
+                <th>Purpose</th>
+                <th style="width: 90px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="report-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Calibration & Printer Offsets -->
+    <section id="tab-settings" class="tab-content">
+      <div class="card" style="max-width: 650px; margin: 0 auto;">
+        <h2 class="card-title"><span>⚙️</span> Printer Alignment Calibration</h2>
+        <p class="card-subtitle">
+          If your printer feeds cheque paper slightly shifted to the left, right, top or bottom, 
+          you can fine-tune the millimeter offsets here.
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 20px;">
+          <div class="form-group">
+            <label for="input-offset-x">Horizontal Offset (Left / Right ± mm):</label>
+            <input type="number" id="input-offset-x" class="form-control" step="0.5" value="0">
+            <small style="color: #64748b;">Positive (+mm) moves text to the RIGHT, negative (-mm) moves LEFT.</small>
+          </div>
+
+          <div class="form-group" style="margin-top: 15px;">
+            <label for="input-offset-y">Vertical Offset (Top / Bottom ± mm):</label>
+            <input type="number" id="input-offset-y" class="form-control" step="0.5" value="0">
+            <small style="color: #64748b;">Positive (+mm) moves text DOWN, negative (-mm) moves UP.</small>
+          </div>
+        </div>
+
+        <button type="button" id="btn-save-settings" class="btn btn-primary" style="width: 100%;">
+          <span>💾</span> Save Alignment Settings
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast">Notification message</div>
+
+  <script>
+// ============================================================
+// IUB Manual Cheque Printing & Daily Reporting System - Client
+// ============================================================
+
+// State
+let currentOperator = localStorage.getItem('iub_operator') || 'kashif bashir';
+let operatorsList = JSON.parse(localStorage.getItem('iub_operators_list') || '["kashif bashir", "Muhammad Dawood", "Amir"]');
+let allCheques = JSON.parse(localStorage.getItem('iub_cheques_db') || '[]');
+let offsetX = parseFloat(localStorage.getItem('iub_offset_x') || '0');
+let offsetY = parseFloat(localStorage.getItem('iub_offset_y') || '0');
+
+// DOM Elements
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+const operatorSelect = document.getElementById('operator-select');
+const btnAddOperator = document.getElementById('btn-add-op');
+
+// Form inputs
+const formCheque = document.getElementById('form-cheque');
+const inputDate = document.getElementById('input-date');
+const inputPayee = document.getElementById('input-payee');
+const inputAmount = document.getElementById('input-amount');
+const inputRupees = document.getElementById('input-rupees');
+const inputPurpose = document.getElementById('input-purpose');
+const payeeDatalist = document.getElementById('payee-suggestions');
+const badgeDailySr = document.getElementById('badge-daily-sr');
+
+// Preview Elements
+const previewCounterDate = document.getElementById('pos-counter-date');
+const previewCounterName = document.getElementById('pos-counter-name');
+const previewCounterAmount = document.getElementById('pos-counter-amount');
+const previewCounterPurpose = document.getElementById('pos-counter-purpose');
+const previewCounterRupees = document.getElementById('pos-counter-rupees');
+
+const previewChqDate = document.getElementById('pos-chq-date');
+const previewChqName = document.getElementById('pos-chq-name');
+const previewChqRupees = document.getElementById('pos-chq-rupees');
+const previewChqAmount = document.getElementById('pos-chq-amount');
+
+const previewSlipPurpose = document.getElementById('pos-slip-purpose');
+const previewSlipDate = document.getElementById('pos-slip-date');
+
+const toggleGuide = document.getElementById('toggle-guide');
+const chequeSheet = document.getElementById('cheque-sheet');
+
+// Reports Elements
+const reportFilterDate = document.getElementById('report-filter-date');
+const reportSearch = document.getElementById('report-search');
+const btnFilterToday = document.getElementById('btn-filter-today');
+const btnFilterAll = document.getElementById('btn-filter-all');
+const btnExportExcel = document.getElementById('btn-export-excel');
+const reportTableBody = document.getElementById('report-table-body');
+const totalCountBadge = document.getElementById('total-cheques-count');
+const totalAmountBadge = document.getElementById('total-cheques-amount');
+
+// Settings Elements
+const inputOffsetX = document.getElementById('input-offset-x');
+const inputOffsetY = document.getElementById('input-offset-y');
+const btnSaveSettings = document.getElementById('btn-save-settings');
+const toastEl = document.getElementById('toast');
+
+// Initialize
+document.addEventListener('DOMContentLoaded', async () => {
+  initTabs();
+  initDefaultDate();
+  applyCalibration(offsetX, offsetY);
+  inputOffsetX.value = offsetX;
+  inputOffsetY.value = offsetY;
+  initOperator();
+  bindFormEvents();
+  bindReportsEvents();
+  await loadCheques();
+});
+
+// Toast notification
+function showToast(msg, isError = false) {
+  toastEl.textContent = msg;
+  toastEl.style.backgroundColor = isError ? '#dc2626' : '#1e293b';
+  toastEl.classList.add('show');
+  setTimeout(() => toastEl.classList.remove('show'), 3500);
+}
+
+// Tabs
+function initTabs() {
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.tab);
+      if (target) target.classList.add('active');
+      if (btn.dataset.tab === 'tab-reports') {
+        loadCheques();
+      }
+    });
+  });
+}
+
+// Default Date (Today in YYYY-MM-DD)
+function initDefaultDate() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  inputDate.value = `${yyyy}-${mm}-${dd}`;
+  reportFilterDate.value = `${yyyy}-${mm}-${dd}`;
+  updatePreview();
+  fetchDailySerial();
+}
+
+function fetchDailySerial() {
+  const d = inputDate.value;
+  const dayCheques = allCheques.filter(c => c.date_raw === d);
+  const maxDaySr = dayCheques.reduce((max, c) => Math.max(max, c.sr_no || 0), 0);
+  const nextSr = maxDaySr + 1;
+  if (badgeDailySr) {
+    badgeDailySr.textContent = `Today's Next Sr. No: #${nextSr} (${dayCheques.length} issued today)`;
+  }
+}
+
+// Operator System
+function initOperator() {
+  operatorSelect.innerHTML = '';
+  operatorsList.forEach(op => {
+    const opt = document.createElement('option');
+    opt.value = op;
+    opt.textContent = op;
+    if (op.toLowerCase() === currentOperator.toLowerCase()) {
+      opt.selected = true;
+    }
+    operatorSelect.appendChild(opt);
+  });
+
+  operatorSelect.addEventListener('change', () => {
+    currentOperator = operatorSelect.value;
+    localStorage.setItem('iub_operator', currentOperator);
+    updatePreview();
+    showToast(`Active Operator switched to: ${currentOperator}`);
+  });
+
+  btnAddOperator.addEventListener('click', () => {
+    const name = prompt('Enter New Operator Name (e.g. Amir, Kashif Bashir):');
+    if (name && name.trim()) {
+      const cleanName = name.trim();
+      if (!operatorsList.includes(cleanName)) {
+        operatorsList.push(cleanName);
+        localStorage.setItem('iub_operators_list', JSON.stringify(operatorsList));
+        initOperator();
+        operatorSelect.value = cleanName;
+        currentOperator = cleanName;
+        localStorage.setItem('iub_operator', currentOperator);
+        updatePreview();
+      }
+    }
+  });
+}
+
+// Number to Words Converter (Pakistani / English Financial Standard)
+function convertToHundredsThousands(num) {
+  if (num === 0) return 'Zero only';
+
+  const ones = [
+    '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+    'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
+    'Seventeen', 'Eighteen', 'Nineteen'
+  ];
+  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+  function threeDigits(n) {
+    let s = '';
+    if (n >= 100) {
+      s += ones[Math.floor(n / 100)] + ' hundred ';
+      n %= 100;
+      if (n > 0) s += 'and ';
+    }
+    if (n >= 20) {
+      s += tens[Math.floor(n / 10)] + ' ';
+      n %= 10;
+    }
+    if (n > 0) {
+      s += ones[n] + ' ';
+    }
+    return s.trim();
+  }
+
+  let result = '';
+  const millions = Math.floor(num / 1000000);
+  num %= 1000000;
+  const thousands = Math.floor(num / 1000);
+  const units = num % 1000;
+
+  if (millions > 0) {
+    result += threeDigits(millions) + ' Million ';
+  }
+  if (thousands > 0) {
+    result += threeDigits(thousands) + ' thousand ';
+  }
+  if (units > 0) {
+    result += threeDigits(units) + ' ';
+  }
+
+  result = result.trim();
+  if (result) {
+    return result + ' only';
+  }
+  return '';
+}
+
+// Bind Form Events
+function bindFormEvents() {
+  inputAmount.addEventListener('input', () => {
+    const val = parseFloat(inputAmount.value);
+    if (!isNaN(val) && val > 0) {
+      const words = convertToHundredsThousands(val);
+      inputRupees.value = words;
+    } else {
+      inputRupees.value = '';
+    }
+    updatePreview();
+  });
+
+  inputPayee.addEventListener('input', updatePreview);
+  inputPurpose.addEventListener('input', updatePreview);
+  inputRupees.addEventListener('input', updatePreview);
+  inputDate.addEventListener('input', () => {
+    updatePreview();
+    fetchDailySerial();
+  });
+
+  // Guide toggle
+  toggleGuide.addEventListener('change', () => {
+    if (toggleGuide.checked) {
+      chequeSheet.classList.add('guide-mode');
+    } else {
+      chequeSheet.classList.remove('guide-mode');
+    }
+  });
+
+  // Print button
+  document.getElementById('btn-print-cheque').addEventListener('click', handlePrintCheque);
+
+  // Save only button
+  document.getElementById('btn-save-only').addEventListener('click', async () => {
+    await saveChequeRecord(false);
+  });
+
+  // Reset button
+  document.getElementById('btn-reset-form').addEventListener('click', () => {
+    formCheque.reset();
+    initDefaultDate();
+    updatePreview();
+  });
+}
+
+// Update Live Preview & Auto-fill Fields
+function updatePreview() {
+  const payee = inputPayee.value.trim() || 'Ayesha Akbar (31302-7388542-2)';
+  const amount = inputAmount.value.trim() ? `${inputAmount.value.trim()}/-` : '230400/-';
+  const rupees = inputRupees.value.trim() || 'two hundred and thirty thosuand four hundred only';
+  const purpose = inputPurpose.value.trim() || 'payment of part time';
+
+  // Format date
+  const rawDate = inputDate.value;
+  let chqDateStr = '18/10/2026';
+  let counterDateStr = '18-10-2026 11:00 am';
+
+  if (rawDate) {
+    const [y, m, d] = rawDate.split('-');
+    chqDateStr = `${parseInt(d, 10)}/${parseInt(m, 10)}/${y}`;
+    
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12 || 12;
+    const timeStr = `${String(hours).padStart(2, '0')}:${minutes} ${ampm}`;
+    counterDateStr = `${d}-${m}-${y} ${timeStr}`;
+  }
+
+  // Populate preview DOM
+  previewCounterDate.textContent = `${counterDateStr},print By:${currentOperator}`;
+  previewCounterName.textContent = payee;
+  previewCounterAmount.textContent = amount;
+  previewCounterPurpose.textContent = purpose;
+  previewCounterRupees.textContent = rupees;
+
+  previewChqDate.textContent = chqDateStr;
+  previewChqName.textContent = payee;
+  previewChqRupees.textContent = rupees;
+  previewChqAmount.textContent = amount;
+
+  previewSlipPurpose.textContent = purpose;
+  previewSlipDate.textContent = chqDateStr;
+}
+
+// Save Cheque Record (Hybrid: Works locally and in pure client-side mode)
+async function saveChequeRecord(isPrinting = true) {
+  const payee = inputPayee.value.trim();
+  const amount = parseFloat(inputAmount.value);
+  const purpose = inputPurpose.value.trim() || 'payment of part time';
+  const words = inputRupees.value.trim();
+  const rawDate = inputDate.value;
+
+  if (!payee) {
+    showToast('Please enter Payee Name & CNIC.', true);
+    inputPayee.focus();
+    return null;
+  }
+  if (isNaN(amount) || amount <= 0) {
+    showToast('Please enter a valid Amount.', true);
+    inputAmount.focus();
+    return null;
+  }
+
+  const [y, m, d] = rawDate.split('-');
+  const chqDateStr = `${parseInt(d, 10)}/${parseInt(m, 10)}/${y}`;
+
+  // Date-wise Serial Number calculation
+  const dayCheques = allCheques.filter(c => c.date_raw === rawDate);
+  const maxDaySr = dayCheques.reduce((max, c) => Math.max(max, c.sr_no || 0), 0);
+  const nextSr = maxDaySr + 1;
+
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12 || 12;
+  const timeStr = `${String(hours).padStart(2, '0')}:${minutes} ${ampm}`;
+  const timestampStr = `${d}-${m}-${y} ${timeStr},print By:${currentOperator}`;
+
+  const newCheque = {
+    id: 'chq-' + Date.now(),
+    sr_no: nextSr,
+    date_raw: rawDate,
+    chq_date: chqDateStr,
+    timestamp: timestampStr,
+    operator: currentOperator,
+    payee: payee,
+    amount: amount,
+    amount_formatted: `${amount}/-`,
+    amount_words: words,
+    purpose: purpose,
+    slip_date: chqDateStr,
+    created_at: now.toISOString()
+  };
+
+  // 1. Save in local browser storage (Persistent)
+  allCheques.unshift(newCheque);
+  localStorage.setItem('iub_cheques_db', JSON.stringify(allCheques));
+
+  // 2. Try saving to backend if available
+  try {
+    fetch('/api/cheques', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newCheque)
+    }).catch(() => {});
+  } catch(e) {}
+
+  showToast(isPrinting ? 'Cheque Printed & Saved to Daily Record!' : 'Cheque Saved Successfully!');
+  loadCheques();
+  fetchDailySerial();
+
+  // Reset inputs for next entry
+  inputPayee.value = '';
+  inputAmount.value = '';
+  inputRupees.value = '';
+  updatePreview();
+
+  return newCheque;
+}
+
+// Print Handler
+async function handlePrintCheque() {
+  updatePreview();
+  window.print();
+  await saveChequeRecord(true);
+}
+
+// Reports & Filtering
+function bindReportsEvents() {
+  reportFilterDate.addEventListener('change', () => loadCheques());
+  reportSearch.addEventListener('input', () => loadCheques());
+
+  btnFilterToday.addEventListener('click', () => {
+    initDefaultDate();
+    loadCheques();
+  });
+
+  btnFilterAll.addEventListener('click', () => {
+    reportFilterDate.value = '';
+    reportSearch.value = '';
+    loadCheques();
+  });
+
+  // Client-Side Excel Export (Works 100% in browser anywhere!)
+  btnExportExcel.addEventListener('click', () => {
+    exportToExcel();
+  });
+}
+
+// Export Excel Function (Directly in Browser via SheetJS)
+function exportToExcel() {
+  const d = reportFilterDate.value;
+  const q = (reportSearch.value || '').toLowerCase().trim();
+
+  let list = [...allCheques];
+  if (d) {
+    list = list.filter(c => c.date_raw === d || c.chq_date === d);
+  }
+  if (q) {
+    list = list.filter(c => 
+      (c.payee && c.payee.toLowerCase().includes(q)) ||
+      (c.purpose && c.purpose.toLowerCase().includes(q)) ||
+      (c.operator && c.operator.toLowerCase().includes(q)) ||
+      (c.amount && String(c.amount).includes(q))
+    );
+  }
+
+  if (list.length === 0) {
+    showToast('No cheques to export for the selected filter.', true);
+    return;
+  }
+
+  // Sort ascending by sr_no as in user's original template
+  const exportRows = list.sort((a, b) => (a.sr_no || 0) - (b.sr_no || 0)).map(c => ({
+    'date': c.timestamp,
+    'Payee': c.payee,
+    'amount': c.amount,
+    'purpose': c.purpose,
+    'rupees': c.amount_words,
+    'chq date': c.chq_date,
+    'chq name': c.payee,
+    'chq rupees': c.amount_words,
+    'chq amount': c.amount,
+    'slip purpose': c.purpose,
+    'slip date': c.slip_date || c.chq_date,
+    'Sr. No.': c.sr_no
+  }));
+
+  if (window.XLSX) {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(exportRows, {
+      header: [
+        'date', 'Payee', 'amount', 'purpose', 'rupees',
+        'chq date', 'chq name', 'chq rupees', 'chq amount',
+        'slip purpose', 'slip date', 'Sr. No.'
+      ]
+    });
+
+    ws['!cols'] = [
+      { wch: 45 }, { wch: 38 }, { wch: 12 }, { wch: 25 }, { wch: 55 },
+      { wch: 12 }, { wch: 38 }, { wch: 55 }, { wch: 12 }, { wch: 25 },
+      { wch: 12 }, { wch: 8 }
+    ];
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    const filenameDate = d || 'All_Dates';
+    XLSX.writeFile(wb, `IUB_Cheques_${filenameDate}.xlsx`);
+    showToast(`Excel Sheet downloaded successfully!`);
+  } else {
+    // Fallback to backend export
+    let url = '/api/export-excel?';
+    if (d) url += `date=${d}&`;
+    if (q) url += `search=${encodeURIComponent(q)}&`;
+    window.location.href = url;
+  }
+}
+
+// Load Cheques List
+async function loadCheques() {
+  // If running against server, try to sync from server
+  try {
+    const res = await fetch('/api/cheques');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.cheques && data.cheques.length) {
+        allCheques = data.cheques;
+        localStorage.setItem('iub_cheques_db', JSON.stringify(allCheques));
+      }
+    }
+  } catch (e) {
+    // Standalone client mode
+    allCheques = JSON.parse(localStorage.getItem('iub_cheques_db') || '[]');
+  }
+
+  const d = reportFilterDate.value;
+  const q = (reportSearch.value || '').toLowerCase().trim();
+
+  let filtered = [...allCheques];
+  if (d) {
+    filtered = filtered.filter(c => c.date_raw === d || c.chq_date === d);
+  }
+  if (q) {
+    filtered = filtered.filter(c => 
+      (c.payee && c.payee.toLowerCase().includes(q)) ||
+      (c.purpose && c.purpose.toLowerCase().includes(q)) ||
+      (c.operator && c.operator.toLowerCase().includes(q)) ||
+      (c.amount && String(c.amount).includes(q))
+    );
+  }
+
+  // Update suggestions for Payee autocomplete
+  updatePayeeDatalist(allCheques);
+
+  // Update Summary Badges
+  const totalAmt = filtered.reduce((sum, c) => sum + (Number(c.amount) || 0), 0);
+  totalCountBadge.textContent = `${filtered.length} Cheques`;
+  totalAmountBadge.textContent = `Rs. ${totalAmt.toLocaleString()}/-`;
+
+  // Render Table
+  renderTable(filtered);
+  fetchDailySerial();
+}
+
+function updatePayeeDatalist(cheques) {
+  const payees = Array.from(new Set(cheques.map(c => c.payee).filter(Boolean)));
+  payeeDatalist.innerHTML = '';
+  payees.slice(0, 50).forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    payeeDatalist.appendChild(opt);
+  });
+}
+
+function renderTable(cheques) {
+  reportTableBody.innerHTML = '';
+  if (cheques.length === 0) {
+    reportTableBody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align: center; padding: 30px; color: #64748b;">
+          No cheques found for the selected date or search filter.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  cheques.forEach((c) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${c.sr_no || '-'}</strong></td>
+      <td>
+        <div>${c.chq_date || c.date_raw}</div>
+        <small style="color: #64748b; font-size: 0.75rem;">${c.timestamp || ''}</small>
+      </td>
+      <td><strong>${escapeHtml(c.payee)}</strong></td>
+      <td><span style="font-weight: 700; color: #065f46;">Rs. ${(Number(c.amount) || 0).toLocaleString()}/-</span></td>
+      <td><small style="color: #475569;">${escapeHtml(c.amount_words)}</small></td>
+      <td>${escapeHtml(c.purpose)}</td>
+      <td style="white-space: nowrap;">
+        <button class="btn-icon" title="Load & Re-Print" onclick="reprintCheque('${c.id}')">🖨️</button>
+        <button class="btn-icon delete" title="Delete Record" onclick="deleteCheque('${c.id}')">🗑️</button>
+      </td>
+    `;
+    reportTableBody.appendChild(tr);
+  });
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Re-print Cheque from history
+window.reprintCheque = function(id) {
+  const item = allCheques.find(c => c.id === id);
+  if (!item) return;
+
+  inputPayee.value = item.payee || '';
+  inputAmount.value = item.amount || '';
+  inputRupees.value = item.amount_words || '';
+  inputPurpose.value = item.purpose || '';
+  if (item.date_raw) inputDate.value = item.date_raw;
+
+  updatePreview();
+  tabBtns[0].click();
+  showToast(`Loaded cheque for ${item.payee}. Ready to print!`);
+};
+
+// Delete Cheque
+window.deleteCheque = async function(id) {
+  if (!confirm('Are you sure you want to delete this cheque record?')) return;
+  allCheques = allCheques.filter(c => c.id !== id);
+  localStorage.setItem('iub_cheques_db', JSON.stringify(allCheques));
+
+  try {
+    fetch(`/api/cheques/${id}`, { method: 'DELETE' }).catch(() => {});
+  } catch(e) {}
+
+  showToast('Cheque deleted successfully.');
+  loadCheques();
+};
+
+function applyCalibration(x, y) {
+  document.documentElement.style.setProperty('--cal-x', `${x}mm`);
+  document.documentElement.style.setProperty('--cal-y', `${y}mm`);
+}
+
+btnSaveSettings.addEventListener('click', () => {
+  offsetX = parseFloat(inputOffsetX.value) || 0;
+  offsetY = parseFloat(inputOffsetY.value) || 0;
+  localStorage.setItem('iub_offset_x', offsetX);
+  localStorage.setItem('iub_offset_y', offsetY);
+  applyCalibration(offsetX, offsetY);
+  showToast('Alignment Calibration Saved!');
+});
+
+</script>
+</body>
+</html>
+
